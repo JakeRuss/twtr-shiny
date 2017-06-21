@@ -50,19 +50,36 @@ fluidPage(
     # Show a tabset that includes three tabs
     mainPanel(
       tabsetPanel(type = "tabs", 
-                  tabPanel("Hashtag Search", 
-                           h2("Top 15 Tweets with #hashtag"),
-                           tableOutput("top_15_tweets"),
-                           h2("Top 15 Other #hashtags associated with #hashtag"),
-                           tableOutput("top_15_hashes")), 
+                  tabPanel("Hashtag Search",
+                           fluidRow(
+                             column(width = 7,
+                                    h4("Top 15 Tweets with #hashtag"),
+                                    div(dataTableOutput("top_15_tweets"), style = "font-size: 80%; width: 100%")),
+                             column(width = 5,
+                                    h4("Most Popular #hashtags Associated with #hashtag"),
+                                    div(dataTableOutput("top_15_hashes"), style = "font-size: 80%; width: 100%")))), 
                   
-                  tabPanel("Florida Tweets",  leafletOutput("fla_map")), 
+                  tabPanel("Florida Tweets",  
+                           h4("Where are users tweeting their location?"),
+                           leafletOutput("fla_map"),
+                           h4("Twitter User Names"),
+                           dataTableOutput("fla_users")), 
                   
-                  tabPanel("Trending Topics", tableOutput("usa_topics"),
-                                              br(),
-                                              tableOutput("loc1_topics"),
-                                              br(),
-                                              tableOutput("loc2_topics"))
+                  tabPanel("Trending Topics",
+                           fluidRow(
+                             
+                             column(width = 4,
+                                    h4("Top 10 Trending Topics United States"),
+                                    div(dataTableOutput("usa_topics"),  style = "font-size: 80%; width: 100%")),
+                             
+                             column(width = 4,
+                                    h4("Top 10 Trending Topics in Location 1"),
+                                    div(dataTableOutput("loc1_topics"), style = "font-size: 80%; width: 100%")),
+                             
+                             column(width = 4,
+                                    h4("Top 10 Trending Topics in Location 2"),
+                                    div(dataTableOutput("loc2_topics"), style = "font-size: 80%; width: 100%")))
+        )
       )
     )
   )
