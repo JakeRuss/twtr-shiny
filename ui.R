@@ -1,4 +1,5 @@
 library(shiny)
+library(leaflet)
 
 # Define UI for random distribution application 
 fluidPage(
