@@ -5,6 +5,8 @@ library(rtweet)
 library(leaflet)
 library(stringr)
 
+options(shiny.sanitize.errors = FALSE)
+
 # Define server logic for random distribution application
 function(input, output) {
   
